@@ -13,9 +13,21 @@
     </head>
 
     <body>
+        <?php include 'db_connect.php';
+        
+        $link = new DB_CONNECT;
+ 
+        $result = mysqli_query($link->connection,"INSERT INTO `ph`(`Username`, `Amount Pledged`, `Payment`, `Amount Used`) VALUES ('micgr7',10000,'unpaid',5000)");
+        if ($result){
+            echo "Sucess";
+        }
+        else
+            echo mysqli_error($link->connection);
+
+        ?>
         <div class="container">
             <div class="jumbotron">
-                <h2>Test</h2>
+                <h2>Calc App</h2>
             </div>
         </div>
 
