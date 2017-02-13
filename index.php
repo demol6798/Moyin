@@ -13,18 +13,30 @@
     </head>
 
     <body>
-        <!--<?php include 'db_connect.php';
+        <?php include 'db_connect.php';
         
         $link = new DB_CONNECT;
  
-        $result = mysqli_query($link->connection,"INSERT INTO `ph`(`Username`, `Amount Pledged`, `Payment`, `Amount Used`) VALUES ('micgr7',10000,'unpaid',5000)");
-        if ($result){
+        $result1 = mysqli_query($link->connection,"SELECT `Username`, `Amount Pledged` FROM `ph`");
+        
+        if ($result1){
             echo "Sucess";
+            //retreive rows        
+            $emails_ph = mysqli_fetch_all($result1);
         }
         else
-            echo mysqli_error($link->connection);
+            echo "No available users";
 
-        ?>-->
+        $result2 = mysqli_query($link->connection,"SELECT `Username`, `Amount to Receive` FROM `gh`");
+        
+        if ($result2){
+            echo "Sucess";
+            //retreive rows        
+            $emails_gh = mysqli_fetch_all($result2);
+        }
+        else
+            echo "No available users";
+        ?>
         <div class="container">
             <div class="jumbotron">
                 <h2 class="text-green">Calc App</h2>
@@ -34,12 +46,22 @@
                 <form action="/moyin/calc.php" method="post">
                 <div class="row">
                     <div class="col-xs-6">
-                        <h3 class="text-green">PH</h3>
-                        <input name="PH_LIST" type="text-area"></input>
+                        <h3 class="text-green">PH</h3> 
+                        <ul class="list-group">
+                            <?php 
+                            foreach($emails_ph as $p){
+                                echo "<li class='list-group-item'>".implode("<br/>",$p)."</li>";
+                            }?>
+                        </ul>
                     </div>
                     <div class="col-xs-6">
                         <h3 class="text-green">GH</h3>
-                        <input name="GH_LIST" type="text-area"></input>
+                        <ul class="list-group">
+                            <?php 
+                            foreach($emails_gh as $p){
+                                echo "<li class='list-group-item'>".implode("<br/>",$p)."</li>";
+                            }?>
+                        </ul>
                     </div>
                 </div>
                  <br />
