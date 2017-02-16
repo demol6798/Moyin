@@ -47,7 +47,6 @@
             }
     
             $result = mysqli_query($link->connection,"UPDATE `ph` SET `Payment` = 'paid' WHERE `ph`.`Username` = '$user_name'");
-            //mysqli_query($link->connection,"DELETE FROM `ph` WHERE `ph`.`Username` = '$user_name'");
             if ($result){
                 echo "Sucess";
             }

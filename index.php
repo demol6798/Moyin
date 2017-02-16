@@ -17,7 +17,7 @@
         
         $link = new DB_CONNECT;
  
-        $result1 = mysqli_query($link->connection,"SELECT `Username`, `Amount Pledged` FROM `ph`");
+        $result1 = mysqli_query($link->connection,"SELECT `Username`, `Amount Pledged` FROM `ph` WHERE `Payment` = 'unpaid' ORDER BY `TIME`");
         
         if ($result1){
             echo "Sucess";
@@ -27,7 +27,7 @@
         else
             echo "No available users";
 
-        $result2 = mysqli_query($link->connection,"SELECT `Username`, `Amount to Receive` FROM `gh`");
+        $result2 = mysqli_query($link->connection,"SELECT `Username`, `Amount to Receive` FROM `gh` ORDER BY `TIME`");
         
         if ($result2){
             echo "Sucess";
